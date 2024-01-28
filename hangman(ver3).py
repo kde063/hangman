@@ -14,6 +14,9 @@ class Main:
         self.tempList = ["apple", "candy", "school", "student", "computer"]
         self.myFont = py.font.SysFont(None, 50)
         self.word = choice(self.tempList)
+        self.answer = ""
+        self.end = 0
+        self.tempAnswer = ""
 
     def loop(self):
         for event in py.event.get():
@@ -27,6 +30,9 @@ class Main:
             self.draw()
             self.blank()
             self.text()
+            py.display.flip()
+            self.gameManager()
+            self.gameOver()
             py.display.flip()
 
     def draw(self):
@@ -61,21 +67,52 @@ class Main:
             py.draw.line(self.screen, self.WHITE , (300, 400), (200, 450), 1 )
 
     def blank(self):
-        for i in range(1, len(self.word) + 1):
-            Text = self.myFont.render("_", (0 + i*10, 0), (255, 255, 255))
-            self.screen.blit(Text, (200, 100))
+        blank = "_" * len(self.word)
+
+        for i, char in enumerate(blank):
+            text_surface = self.myFont.render(char, True, (255, 255, 255))
+
+            x = 500 + i * 40
+            y = 400
+
+            self.screen.blit(text_surface, (x, y))
 
     def text(self):
-        myText = self.myFont.render("Hello World ",  True, (0, 0, 255))
-        self.screen.blit(myText, (100, 100))
+        for i, char in enumerate(self.answer):
+            textSurface = self.myFont.render(char, True, (255, 255, 255))
 
+            x = 500 + i * 40
+            y = 390
+
+            self.screen.blit(textSurface, (x, y))
+
+    def gameManager(self):
+        inp = input()  #temp
+        
+        if inp in self.word:
+            if inp not in self.tempAnswer:
+                self.tempAnswer+=inp
+        else:
+            self.chance-=1
+        
+        for i in self.word:
+            if i in self.tempAnswer:
+                self.tempAnswer += i
+
+            else:
+                self.tempAnswer += " "
+
+        if self.end == len(self.answer):
+            self.gameCheck = True
+    
     def gameOver(self):
         if self.chance == 0:
             print("실패")
             self.running = False
         
-        elif self.gameCheck and self.running != 0:
+        elif self.gameCheck and self.running:
             print("성공")
+            self.running = False
 
 main = Main()
 main.start()

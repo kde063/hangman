@@ -57,14 +57,6 @@
 #         print("남은 단어가 없습니다.")
 #         break
 
-coord = [[1,1,1,1],
-         [2,2,2,2]]
-
-print(coord)
-coord[0][1] = 0
-
-print(coord)
-
 # chance = 5
 # while chance !=0:   
 #     for i in range(0,6-chance):
@@ -72,11 +64,3 @@ print(coord)
 #         print("chance", chance)
 #         print("----------------")
 #     chance-=1
-
-chance = 5
-while chance !=0:   
-    print(5-chance)
-    print("chance", chance)
-    print("----------------")
-    chance-=1
-    
