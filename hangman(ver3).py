@@ -1,6 +1,6 @@
 import pygame as py
 from random import choice
-import threading
+from time import sleep
 
 class Main:
     def __init__(self):
@@ -90,7 +90,7 @@ class Main:
 
     def gameManager(self):
         print("chance: ", self.chance)
-        inp = self.inp(self.event)
+        inp = input()
         self.answer = ""
         self.end = 0
 
@@ -118,53 +118,53 @@ class Main:
         
         elif self.gameCheck and self.running:
             print("성공")
+            sleep(3)
             self.running = False
 
-    def inp(self, event):
-        if event.type == py.KEYDOWN:
+    # def inp(self, event):
+    #     if event.type == py.KEYDOWN:
 
-            if event.key == py.K_RETURN:
-                print("입력된 문자열:", input_text)
-                input_text = ""
-            else:
-                input_text += event.unicode
-def write():
-    py.init()
+    #         if event.key == py.K_RETURN:
+    #             print("입력된 문자열:", input_text)
+    #             input_text = ""
+    #         else:
+    #             input_text += event.unicode
+# def write():
+#     py.init()
 
-    # 화면 크기 설정
-    width, height = 400, 300
-    screen = py.display.set_mode((width, height))
-    py.display.set_caption("Text Input Example")
+#     # 화면 크기 설정
+#     width, height = 400, 300
+#     screen = py.display.set_mode((width, height))
+#     py.display.set_caption("Text Input Example")
 
-    # 폰트 설정
-    font = py.font.Font(None, 36)
+#     # 폰트 설정
+#     font = py.font.Font(None, 36)
 
-    # 입력 받을 문자열 초기화
-    input_text = ""
+#     # 입력 받을 문자열 초기화
+#     input_text = ""
 
-    # 메인 루프
-    running = True
-    while running:
-        for event in py.event.get():
-            if event.type == py.QUIT:
-                running = False
+#     # 메인 루프
+#     running = True
+#     while running:
+#         for event in py.event.get():
+#             if event.type == py.QUIT:
+#                 running = False
 
-            # 키 이벤트 처리
-            elif event.type == py.KEYDOWN:
-                # 엔터 키를 누르면 입력 완료
-                if event.key == py.K_RETURN:
-                    print("입력된 문자열:", input_text)
-                    input_text = ""  # 입력 받은 문자열 초기화
-                else:
-                    # 다른 키를 누르면 입력 받은 문자열에 추가
-                    input_text += event.unicode
+#             # 키 이벤트 처리
+#             elif event.type == py.KEYDOWN:
+#                 # 엔터 키를 누르면 입력 완료
+#                 if event.key == py.K_RETURN:
+#                     print("입력된 문자열:", input_text)
+#                     input_text = ""  # 입력 받은 문자열 초기화
+#                 else:
+#                     # 다른 키를 누르면 입력 받은 문자열에 추가
+#                     input_text += event.unicode
 
-        # 화면 업데이트
-        screen.fill((0, 0, 0))  # 화면을 검은색으로 지우기
-        text_surface = font.render(input_text, True, (255, 255, 255))
-        screen.blit(text_surface, (10, 10))  # 입력된 문자열을 화면에 출력
-        py.display.flip()
+#         # 화면 업데이트
+#         screen.fill((0, 0, 0))  # 화면을 검은색으로 지우기
+#         text_surface = font.render(input_text, True, (255, 255, 255))
+#         screen.blit(text_surface, (10, 10))  # 입력된 문자열을 화면에 출력
+#         py.display.flip()
 
 main = Main()
 main.start()
-
