@@ -42,8 +42,15 @@ class Main:
       
     def write(self, text):
         # 화면 업데이트
-        text_surface = self.myFont.render(text, True, (255, 255, 255))
-        self.screen.blit(text_surface, (10, 10))  # 입력된 문자열을 화면에 출력
+        textSurface = self.myFont.render(text, True, (255, 255, 255))
+        self.screen.blit(textSurface, (10, 10))  # 입력된 문자열을 화면에 출력
+    
+    def writeResult(self, text):
+        self.screen.fill(self.BLACK)
+        textSurface = self.myFont.render(text, True, (255, 255, 255))
+        self.screen.blit(textSurface, (10, 10))  # 입력된 문자열을 화면에 출력
+        sleep(2)
+
     
     def start(self):
         print(self.word)  #temp
@@ -135,12 +142,14 @@ class Main:
     
         if self.chance == 0:
             print("실패")
-            self.write("실패")
+            self.writeResult("실패")
             self.running = False
         
         elif self.gameCheck and self.running:
             print("성공")
-            sleep(3)
+            # self.writeResult("성공")
+            self.writeResult("성공")
+            sleep(2)
             self.running = False
 
 main = Main()
