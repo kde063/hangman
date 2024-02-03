@@ -33,7 +33,7 @@ api_key = "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"
 
 import openai #요놈아도 할당량 초과인듯
 
-openai.api_key = "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"
+openai.api_key = "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"
 
 messages = []
 
