@@ -1,6 +1,6 @@
 
 
-api_key = "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"
+# api_key = ""
 
 # from openai import OpenAI
 
@@ -16,10 +16,10 @@ api_key = "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"
 
 # print(completion.choices[0].message.content)
 
-# import openai #이거 된듯 #할당량초과
+# import openai
 
 # OpenAI API 키 설정
-# openai.api_key = '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'
+# openai.api_key = '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'
 
 # # GPT-3에 텍스트 전달
 # response = openai.Completion.create(
@@ -31,20 +31,44 @@ api_key = "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"
 # # GPT-3의 응답 출력
 # print(response.choices[0].text.strip())
 
-import openai #요놈아도 할당량 초과인듯
 
-openai.api_key = "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"
+##완성
+# import openai
+
+# openai.api_key = "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"
+
+# messages = []
+
+# while True:
+#     user_content = input("user : ")
+#     messages.append({"role" : "user", "content" : f"{user_content}"})
+
+#     completion = openai.ChatCompletion.create(model = "gpt-3.5-turbo", messages = messages)
+
+#     assistant_content = completion.choices[0].message["content"].strip()
+
+#     messages.append({"role": "assistant", "content": f"{assistant_content}"})
+
+#     print(f"GPT : {assistant_content}")
+
+
+import openai
+
+openai.api_key = "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"
 
 messages = []
 
 while True:
-    user_content = input("user : ")
+    theme = input("테마를 입력해주세요\n")
+    user_content = theme + "을 테마로 하는 영단어 10개만 알려줘 그리고 번호와 단어는 빼줘"
     messages.append({"role" : "user", "content" : f"{user_content}"})
 
-    completion = openai.ChatCompletion.create(model = "gpt-3.5-turbo", message = messages)
+    completion = openai.ChatCompletion.create(model = "gpt-3.5-turbo", messages = messages)
 
     assistant_content = completion.choices[0].message["content"].strip()
 
     messages.append({"role": "assistant", "content": f"{assistant_content}"})
 
     print(f"GPT : {assistant_content}")
+    print(''.join(assistant_content))
+    print([i.split()[1] for i in ''.join(assistant_content).split('\n')])

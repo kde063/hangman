@@ -64,3 +64,47 @@
 #         print("chance", chance)
 #         print("----------------")
 #     chance-=1
+
+import pygame
+import sys
+
+# Pygame 초기화
+pygame.init()
+
+# 화면 크기 설정
+width, height = 400, 300
+screen = pygame.display.set_mode((width, height))
+pygame.display.set_caption("Text Input Example")
+
+# 폰트 설정
+font = pygame.font.Font(None, 36)
+
+# 입력 받은 문자열 초기화
+input_text = ""
+
+# 메인 루프
+running = True
+while running:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+
+        # 키 이벤트 처리
+        elif event.type == pygame.KEYDOWN:
+            # 엔터 키를 누르면 입력 완료
+            if event.key == pygame.K_RETURN:
+                print("입력된 문자열:", input_text)
+                input_text = ""  # 입력 받은 문자열 초기화
+            else:
+                # 다른 키를 누르면 입력 받은 문자열에 추가
+                input_text += event.unicode
+
+    # 화면 업데이트
+    screen.fill((0, 0, 0))  # 화면을 검은색으로 지우기
+    text_surface = font.render(input_text, True, (255, 255, 255))
+    screen.blit(text_surface, (10, 10))  # 입력된 문자열을 화면에 출력
+    pygame.display.flip()
+
+# Pygame 종료
+pygame.quit()
+sys.exit()
