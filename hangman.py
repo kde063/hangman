@@ -58,9 +58,6 @@ class Main:
                     # 다른 키를 누르면 입력 받은 문자열에 추가
                     self.inputText = event.unicode
 
-            if event.type == py.MOUSEBUTTONDOWN:
-                print(py.mouse.get_pos())
-
         self.write(self.inputText)
         return True 
       
