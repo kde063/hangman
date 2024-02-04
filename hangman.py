@@ -1,23 +1,22 @@
-# import openai
+import openai
 
-# openai.api_key = "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"
+openai.api_key = "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"
 
-# messages = []
+messages = []
 
 
-# theme = input("테마를 입력해주세요\n")
-# user_content = theme + "을 테마로 하는 영단어 10개만 알려줘 그리고 번호와 단어는 빼줘"
-# messages.append({"role" : "user", "content" : f"{user_content}"})
+theme = input("테마를 입력해주세요\n")
+user_content = theme + "을 테마로 하는 영단어 10개만 알려줘 그리고 번호와 단어는 빼줘"
+messages.append({"role" : "user", "content" : f"{user_content}"})
 
-# completion = openai.ChatCompletion.create(model = "gpt-3.5-turbo", messages = messages)
+completion = openai.ChatCompletion.create(model = "gpt-3.5-turbo", messages = messages)
 
-# assistant_content = completion.choices[0].message["content"].strip()
+assistant_content = completion.choices[0].message["content"].strip()
 
-# messages.append({"role": "assistant", "content": f"{assistant_content}"})
+messages.append({"role": "assistant", "content": f"{assistant_content}"})
 
-# assistant_content = ''.join(assistant_content)
-# assistant_content = [i.split()[1] for i in ''.join(assistant_content).split('\n')]
-assistant_content  = ["dfs"]
+assistant_content = ''.join(assistant_content)
+assistant_content = [i.split()[1] for i in ''.join(assistant_content).split('\n')]
 
 import pygame as py
 from random import choice
@@ -59,6 +58,9 @@ class Main:
                     # 다른 키를 누르면 입력 받은 문자열에 추가
                     self.inputText = event.unicode
 
+            if event.type == py.MOUSEBUTTONDOWN:
+                print(py.mouse.get_pos())
+
         self.write(self.inputText)
         return True 
       
@@ -80,6 +82,7 @@ class Main:
         py.quit()
         
     def draw(self):
+        self.frame()
         self.head(self.chance)
         self.body(self.chance)
         self.lArm(self.chance)
@@ -90,33 +93,39 @@ class Main:
 
     def face(self, chance):
         if chance <= 0:
-            py.draw.line(self.screen, self.WHITE, (290, 215), (310, 215), 1)
+            py.draw.line(self.screen, self.WHITE, (491, 118), (509, 119), 1)
 
     def rArm(self, chance):
         if chance <= 1:
-            py.draw.line(self.screen, self.WHITE, (300, 300), (240, 240), 1)
+            py.draw.line(self.screen, self.WHITE, (500, 190), (567, 236), 1)
 
     def lArm(self, chance):
         if chance <= 2:
-            py.draw.line(self.screen, self.WHITE, (300, 300), (360, 240), 1)
+            py.draw.line(self.screen, self.WHITE, (500, 190), (439, 248), 1)
 
     def rLeg(self, chance):
         if chance <= 3:
-            py.draw.line(self.screen, self.WHITE, (300, 400), (400, 450), 1)
+            py.draw.line(self.screen, self.WHITE, (500, 295), (565, 348), 1)
 
     def lLeg(self, chance):
         if chance <= 4:
-            py.draw.line(self.screen, self.WHITE , (300, 400), (200, 450), 1 )
+            py.draw.line(self.screen, self.WHITE , (500, 295), (440, 353), 1 )
 
     def body(self, chance):
         if chance <= 5:
-            py.draw.line(self.screen, self.WHITE, (300, 250), (300, 400), 1)
+            py.draw.line(self.screen, self.WHITE, (500, 150), (500, 295), 1)
 
     def head(self, chance):
         if chance <= 6:
             py.draw.circle(self.screen, self.WHITE, (500, 100), 50, 1)
-            py.draw.circle(self.screen, self.WHITE, (280, 190), 3, 3)
-            py.draw.circle(self.screen, self.WHITE, (320, 190), 3, 3)
+            py.draw.circle(self.screen, self.WHITE, (480, 90), 3, 3)
+            py.draw.circle(self.screen, self.WHITE, (520, 90), 3, 3)
+
+    def frame(self):
+        py.draw.line(self.screen, self.WHITE, (500, 47), (500, 9), 1)
+        py.draw.line(self.screen, self.WHITE, (370, 9), (500, 9), 1)
+        py.draw.line(self.screen, self.WHITE, (370, 9), (370, 349), 1)
+        py.draw.line(self.screen, self.WHITE, (460, 350), (300, 350), 1)
 
     def blank(self):
         blank = "_" * len(self.word)
