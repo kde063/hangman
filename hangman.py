@@ -1,6 +1,6 @@
 import openai
 
-openai.api_key = "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"
+openai.api_key = "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"
 
 messages = []
 
@@ -172,6 +172,7 @@ class Main:
         if self.chance == 0:
             print("실패")
             self.write("실패")
+            print(self.word)
             self.running = False
         
         elif self.gameCheck and self.running:
